@@ -1,0 +1,59 @@
+
+using System.Collections.Generic;
+
+class Tick {}
+class Book {}
+
+interface IDataReceiver
+{
+    void OnInit();
+    void OnTick(Tick tick);
+    void OnBookEvent(Book book);
+    void OnDeinit();
+}
+
+class DataVisualizer : IDataReceiver
+{
+    public void OnBookEvent(Book book)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnDeinit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnInit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnTick(Tick tick)
+    {
+        throw new System.NotImplementedException();
+    }
+}
+
+abstract class IDataProvider
+{
+    public List<IDataReceiver> DataReceivers { get; protected set; }
+}
+
+class MetaTraderDataProvider
+{
+    // call ontick and onbook of data receivers.
+}
+
+// Data Fetching idea
+receivers.OnInit();
+while (active)
+{
+    if (receivedTick)
+        receivers.OnTick(tick);
+    if (receivedBook)
+        receivers.OnBookEvent(book);
+}
+receivers.OnDeinit();
+
+// Implement and test with actual WPF structure

@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using MetaTraderConnector.DataReceivers;
+using MetaTraderConnector.Models;
+using NetMQ;
+using NetMQ.Sockets;
+using Newtonsoft.Json;
 
 namespace MetaTraderConnector
 {
@@ -6,7 +12,10 @@ namespace MetaTraderConnector
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var provider = new MetaTraderDataProvider();
+            provider.DataReceivers.Add(new MarketDataVisualizer());
+            
+            provider.Run();
         }
     }
 }
